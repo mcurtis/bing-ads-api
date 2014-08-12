@@ -99,7 +99,32 @@ module BingAdsApi
 		# Returns:: Response from the Savon::Client 
 		# Raises:: Savon::SOAPFault Savon::HTTPError Savon::InvalidResponseError
 		def call(service_name, message, options={})
-			self.service.call(service_name, message)
+			self.service.request service_name do #call(service_name, message)
+        soap.namespace_identifier = NAMESPACE
+        soap.header = build_headers
+        soap.body = message[:message]
+
+        # XXX: HACK!!!
+        # 1. identify problematic namespaces (ie. ins0)
+        duplicated_namespaces = []
+        soap.namespaces.each do |k, v|
+          if v.match(/\/v9$/)
+            duplicated_namespaces.push(k.split(':').last)
+            soap.namespaces.delete(k)
+          end
+        end
+        #  2. regenerate xml & swap out problematic namespaces with desired namespace
+        # sigh...
+        xml_val = soap.to_xml(true)
+                      .gsub(/<(#{duplicated_namespaces.join('|')}):/, "<#{NAMESPACE}:")
+                      .gsub(/<\/(#{duplicated_namespaces.join('|')})/, "<\/#{NAMESPACE}")
+                      .gsub(/#{NAMESPACE}:[a-z]/) do |w|
+                        ws = w.split(':')
+                        ws.last.upcase!
+                        ws.join(':')
+                      end
+        soap.instance_variable_set(:@xml, xml_val)
+      end
 		end
 		
 		
@@ -116,15 +141,16 @@ module BingAdsApi
 			def get_proxy(client_settings)
 
 				settings = {
-					convert_request_keys_to: KEYS_CASE,
-					wsdl: self.wsdl_url,
-					namespace_identifier: NAMESPACE,
-					soap_header: build_headers
+					convert_request_keys_to: KEYS_CASE, # Savon v1. converts request key to camel case.
+					wsdl: self.wsdl_url, # pass to Savon.client
+					namespace_identifier: NAMESPACE, # set right before sending request
+					soap_header: build_headers # set right before sending request
 				}
 				settings.merge(client_settings) if client_settings
 				puts "settings"
 				puts settings
-				return Savon.client(settings)
+
+        return Savon.client(settings[:wsdl])
 			end
 			
 			

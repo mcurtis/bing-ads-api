@@ -95,7 +95,8 @@ module BingAdsApi
 
 				LOGGER.info "Operation #{operation.to_s} call success"
 				return response.hash
-			rescue Savon::SOAPFault => error
+      rescue Savon::SOAP::Fault => error
+			#rescue Savon::SOAPFault => error
 				LOGGER.error "SOAP Error calling #{operation.to_s}: #{error.http.code}"
 				fault_detail = error.to_hash[:fault][:detail]
 				if fault_detail.key?(:api_fault_detail)
@@ -109,10 +110,12 @@ module BingAdsApi
 				else
 					raise
 				end
-			rescue Savon::HTTPError => error
+			rescue Savon::HTTP::Error => error
+			#rescue Savon::HTTPError => error
 				LOGGER.error "Http Error calling #{operation.to_s}: #{error.http.code}"
 				raise
-			rescue Savon::InvalidResponseError => error
+      rescue Savon::SOAP::InvalidResponseError => error
+			#rescue Savon::InvalidResponseError => error
 				LOGGER.error "Invalid server reponse calling #{operation.to_s}"
 				raise
 			end
