@@ -163,7 +163,7 @@ module BingAdsApi
 			# Returns:: Hash
 			def scope_to_hash(keys_case=:underscore)
 				return {
-					get_attribute_key('account_ids', keys_case) => {"ins0:long" => object_to_hash(scope[:account_ids], keys_case)},
+					get_attribute_key('account_ids', keys_case) => {"ins2:long" => object_to_hash(scope[:account_ids], keys_case)},
 					get_attribute_key('campaigns', keys_case) => 
 						{ "CampaignReportScope" => object_to_hash(scope[:campaigns], keys_case) }
 					}

@@ -84,8 +84,16 @@ module BingAdsApi
 		#
 		# Raises:: Exception if report_request is invalid or SOAP request failed
 		def submit_generate_report(report_request)
-			response = call(:submit_generate_report, 
-				{report_request: report_request.to_hash(:camelcase)})
+      req_hash = report_request.to_hash(:camelcase)
+      attributes = {}
+      req_hash.keys.select { |k| k.to_s.match(/^@/) }.each do |k|
+        nk = k.to_s.gsub(/^@/, '')
+        attributes[nk] = req_hash.delete(k)
+      end
+      report_request_hash = {report_request: req_hash}
+      report_request_hash[:attributes!] = { report_request: attributes } if attributes.present?
+
+			response = call(:submit_generate_report, report_request_hash)
 			response_hash = get_response_hash(response, __method__)
 			report_request_id = response_hash[:report_request_id]
 			return report_request_id
