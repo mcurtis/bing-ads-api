@@ -70,6 +70,18 @@ module BingAdsApi
 			return campaigns
 		end
 
+		def get_campaigns_by_ids(account_id, campaign_ids)
+			response = call(:get_campaigns_by_ids, 
+				{account_id: account_id, 
+         campaign_ids: { 'ins3:long' => campaign_ids } })
+			response_hash = get_response_hash(response, __method__)
+			campaigns_hash = response_hash[:campaigns][:campaign]
+      campaigns_hash = [ campaigns_hash ] if campaigns_hash.is_a? Hash
+      campaigns = campaigns_hash.map do |camp_hash|
+				BingAdsApi::Campaign.new(camp_hash)
+			end
+			return campaigns
+		end
 
 		# Public : Adds a campaign to the specified account 
 		# 
@@ -201,6 +213,16 @@ module BingAdsApi
 			
 		end
 
+    def get_keywords_by_ad_group_id(ad_group_id)
+      response = call(:get_keywords_by_ad_group_id, {ad_group_id: ad_group_id})
+			response_hash = get_response_hash(response, __method__)
+			keywords_hash = response_hash[:keywords][:keyword]
+      keywords_hash = [ keywords_hash ] if keywords_hash.is_a? Hash
+      keywords = keywords_hash.map do |keyword_hash|
+				BingAdsApi::Keyword.new(keyword_hash)
+			end
+			return keywords
+    end
 
 		# Public : Adds 1 or more AdGroups to a Campaign 
 		# 
