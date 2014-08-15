@@ -187,7 +187,7 @@ constants:
       inactive: "Inactive"
       pause: "Pause"
       pending: "Pending"
-  # Constants specific for reporting services 
+  # Constants specific for reporting services
   reporting:
     format:
       csv: 'Csv'
@@ -295,6 +295,81 @@ constants:
         ad_distribution: "AdDistribution"
         device_os: "DeviceOS"
         device_type: "DeviceType"
+    keyword_performance_report:
+      type: "KeywordPerformanceReportRequest"
+      columns:
+        account_id: AccountId
+        account_name: AccountName
+        account_number: AccountNumber
+        account_status: AccountStatus
+        ad_distribution: AdDistribution
+        ad_group_id: AdGroupId
+        ad_group_name: AdGroupName
+        ad_group_status: AdGroupStatus
+        ad_id: AdId
+        ad_type: AdType
+        assists: Assists
+        average_cpc: AverageCpc
+        average_cpm: AverageCpm
+        average_position: AveragePosition
+        bid_match_type: BidMatchType
+        business_category_id: BusinessCategoryId
+        business_category_name: BusinessCategoryName
+        business_listing_id: BusinessListingId
+        business_listing_name: BusinessListingName
+        campaign_id: CampaignId
+        campaign_name: CampaignName
+        campaign_status: CampaignStatus
+        clicks: Clicks
+        conversion_rate: ConversionRate
+        conversions: Conversions
+        cost_per_assist: CostPerAssist
+        cost_per_conversion: CostPerConversion
+        ctr: Ctr
+        currency_code: CurrencyCode
+        current_max_cpc: CurrentMaxCpc
+        delivered_match_type: DeliveredMatchType
+        destination_url: DestinationUrl
+        device_oS: DeviceOS
+        device_type: DeviceType
+        extended_cost: ExtendedCost
+        historic_keyword_relevance: HistoricKeywordRelevance
+        historic_landing_page_relevance: HistoricLandingPageRelevance
+        historic_landing_page_user_experience: HistoricLandingPageUserExperience
+        historic_quality_score: HistoricQualityScore
+        impressions: Impressions
+        keyword: Keyword
+        keyword_id: KeywordId
+        keyword_match_type_id: KeywordMatchTypeId
+        keyword_relevance: KeywordRelevance
+        keyword_status: KeywordStatus
+        landing_page_relevance: LandingPageRelevance
+        landing_page_user_experience: LandingPageUserExperience
+        language: Language
+        network: Network
+        pricing_model: PricingModel
+        quality_impact: QualityImpact
+        quality_score: QualityScore
+        return_on_ad_spend: ReturnOnAdSpend
+        revenue: Revenue
+        revenue_per_assist: RevenuePerAssist
+        revenue_per_conversion: RevenuePerConversion
+        spend: Spend
+        time_period: TimePeriod
+        top_vs_other: TopVsOther
+
+      filter:
+        ad_distribution: "AdDistribution"
+        ad_type: "AdType"
+        bid_match_type: "BidMatchType"
+        delivered_match_type: "DeliveredMatchType"
+        device_type: "DeviceType"
+        keyword_relevance: "KeywordRelevance"
+        keywords: "Keywords"
+        landing_page_relevance: "LandingPageRelevance"
+        landing_page_user_experience: "LandingPageUserExperience"
+        language_code: "LanguageCode"
+        quality_score: "QualityScore"
     campaign_performance_report:
       type: "CampaignPerformanceReportRequest"
       columns:
