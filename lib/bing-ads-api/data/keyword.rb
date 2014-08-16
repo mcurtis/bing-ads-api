@@ -1,10 +1,10 @@
 module BingAdsApi
 	class Keyword < BingAdsApi::DataObject
-    attr_accessor :id,
-      :bid,
+    attr_accessor :bid,
       :destination_url,
       :editorial_status,
       :forward_compatibility_map,
+      :id,
       :match_type,
       :param1,
       :param2,

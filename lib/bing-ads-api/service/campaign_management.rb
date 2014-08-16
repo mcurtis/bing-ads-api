@@ -152,6 +152,25 @@ module BingAdsApi
 			
 		end
 
+    def update_keywords(ad_group_id, keywords)
+      kws = []
+      if keywords.is_a? Array
+        kws = keywords.map do |kw|
+          kw.to_hash(:camelcase)
+        end
+      elsif keywords.is_a? BingAdsApi::Keyword
+        kws = keywords.to_hash(:camelcase)
+      else
+        raise 'keywords must be an array of BingAdsApi::Keyword'
+      end
+      message = {
+        :ad_group_id => ad_group_id,
+        :keywords => { :keyword => kws }
+      }
+      puts message
+      response = call(:update_keywords, message)
+			return get_response_hash(response, __method__)
+    end
 
 		# Public : Returns all the ad groups that belongs to the 
 		# specified campaign 
