@@ -528,7 +528,7 @@ module BingAdsApi
 			# Returns:: The same hash that ad.to_hash returns plus the needed key for the Ad Type
 			def ad_to_hash(ad, keys)
 				hash = ad.to_hash(keys)
-				hash["@xsi:type"] = self.client_proxy.class::NAMESPACE.to_s + ":" + ad.class.to_s.demodulize
+				hash["@xsi:type"] = self.client_proxy.namespace.to_s + ":" + ad.class.to_s.demodulize
 				return hash
 			end
 	end

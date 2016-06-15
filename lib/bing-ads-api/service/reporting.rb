@@ -16,8 +16,9 @@ module BingAdsApi
 	#    :account_id => "9876543" }
 	#  service = BingAdsApi::Reporting.new(options)
 	class Reporting < BingAdsApi::Service
-		
-		
+    def self.namespace
+      :v9
+    end
 		# Public : Get the status of a report request 
 		# 
 		# Author:: jlopezn@neonline.cl 

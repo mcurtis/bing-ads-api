@@ -1,7 +1,10 @@
 # -*- encoding : utf-8 -*-
 module BingAdsApi
 	
-	
+	def self.namespace
+    :v9
+  end
+
 	# Public : This class represents the Customer Management Services 
 	# defined in the Bing Ads API, to manage customer accounts 
 	# 

@@ -7,15 +7,15 @@
 # Default defines sandbox urls. For production, check 'production.wsdl' key
 wsdl:
   sandbox:
-    campaign_management: "https://api.sandbox.bingads.microsoft.com/Api/Advertiser/CampaignManagement/v9/CampaignManagementService.svc?singleWsdl"
+    campaign_management: "https://campaign.api.sandbox.bingads.microsoft.com/Api/Advertiser/CampaignManagement/V10/CampaignManagementService.svc?singleWsdl"
     customer_management: "https://clientcenter.api.sandbox.bingads.microsoft.com/Api/CustomerManagement/v9/CustomerManagementService.svc?singleWsdl"
     reporting: "https://api.sandbox.bingads.microsoft.com/Api/Advertiser/Reporting/V9/ReportingService.svc?singleWsdl"
-    bulk: "https://api.sandbox.bingads.microsoft.com/Api/Advertiser/CampaignManagement/v9/BulkService.svc?singleWsdl"
+    bulk: "https://bulk.api.sandbox.bingads.microsoft.com/Api/Advertiser/CampaignManagement/V10/BulkService.svc?singleWsdl"
   production:
-    campaign_management: "https://api.bingads.microsoft.com/Api/Advertiser/CampaignManagement/v9/CampaignManagementService.svc?singleWsdl"
+    campaign_management: "https://campaign.api.bingads.microsoft.com/Api/Advertiser/CampaignManagement/V10/CampaignManagementService.svc?singleWsdl"
     customer_management: "https://clientcenter.api.bingads.microsoft.com/Api/CustomerManagement/v9/CustomerManagementService.svc?singleWsdl"
     reporting: "https://api.bingads.microsoft.com/Api/Advertiser/Reporting/V9/ReportingService.svc?singleWsdl"
-    bulk: "https://api.bingads.microsoft.com/Api/Advertiser/CampaignManagement/v9/BulkService.svc?singleWsdl"
+    bulk: "https://bulk.api.bingads.microsoft.com/Api/Advertiser/CampaignManagement/V10/BulkService.svc?singleWsdl"
 
 # All major constants are here
 # In general the key and value are the same. Key in snake_case (ruby-like) and value in CamelCase (Bing alike)

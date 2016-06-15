@@ -23,7 +23,12 @@ module BingAdsApi
 		# Valid report request status for reports 
 		REQUEST_STATUS = BingAdsApi::Config.instance.
 			reporting_constants['request_status_type']
-		
+
+    # https://msdn.microsoft.com/en-us/library/dn250011.aspx
+    # ... use version 9 of the Customer Billing, Customer Management, and Reporting services.
+		NAMESPACE = :v9
+
+
 		attr_accessor :format, :language, :report_name, :return_only_complete_data
 		
 		# Public : Constructor. Adds validations to format and language attributes 

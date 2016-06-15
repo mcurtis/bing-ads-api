@@ -166,7 +166,7 @@ module BingAdsApi
 			# 
 			# Returns:: "v9:AccountPerformanceReportRequest"
 			def type_attribute_for_soap
-				return BingAdsApi::ClientProxy::NAMESPACE.to_s + ":" + 
+				return BingAdsApi::ReportRequest::NAMESPACE.to_s + ":" + 
 					BingAdsApi::Config.instance.
 						reporting_constants['account_performance_report']['type']
 			end

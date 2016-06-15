@@ -26,7 +26,7 @@ module BingAdsApi
 	class ClientProxy
 		
 		# Public : Namespace para atributos bing. Hace referencia a la versión de API usada 
-		NAMESPACE = :v9
+		#NAMESPACE = :v9
 
 		# Public : Case empleado los nombres de atributos en los XML 
 		KEYS_CASE = :camelcase
@@ -102,7 +102,6 @@ module BingAdsApi
 			self.service.call(service_name, message)
 		end
 		
-		
 		private
 			# Internal : Wrapper for Savon client instances 
 			# 
@@ -113,12 +112,18 @@ module BingAdsApi
 			#   # => <Savon::Client> 
 			# 
 			# Returns:: Savon client instance
+
+      # NOTE:
+      # from https://msdn.microsoft.com/en-us/library/dn250011.aspx
+      # ... use version 9 of the Customer Billing, Customer Management, and Reporting services.
+      #
+      # To support v10 changes, we should be able to handle both v9 & v10 headers (sigh...)
 			def get_proxy(client_settings)
 
 				settings = {
 					convert_request_keys_to: KEYS_CASE,
 					wsdl: self.wsdl_url,
-					namespace_identifier: NAMESPACE,
+					namespace_identifier: @namespace,
 					soap_header: build_headers
 				}
 				settings.merge(client_settings) if client_settings
@@ -130,15 +135,15 @@ module BingAdsApi
 			
 			def build_headers
 				headers = {
-					"#{NAMESPACE.to_s}:CustomerAccountId" => self.account_id,
-					"#{NAMESPACE.to_s}:CustomerId" => self.customer_id,
-					"#{NAMESPACE.to_s}:DeveloperToken" => self.developer_token,
+					"#{@namespace.to_s}:CustomerAccountId" => self.account_id,
+					"#{@namespace.to_s}:CustomerId" => self.customer_id,
+					"#{@namespace.to_s}:DeveloperToken" => self.developer_token,
 				}
 				if self.authentication_token
-					headers["#{NAMESPACE.to_s}:AuthenticationToken"] = self.authentication_token
+					headers["#{@namespace.to_s}:AuthenticationToken"] = self.authentication_token
 				else
-					headers["#{NAMESPACE.to_s}:UserName"] = self.username
-					headers["#{NAMESPACE.to_s}:Password"] = self.password
+					headers["#{@namespace.to_s}:UserName"] = self.username
+					headers["#{@namespace.to_s}:Password"] = self.password
 				end
 				return headers
 			end

@@ -12,7 +12,10 @@ module BingAdsApi
 		
 		# Default logger for services
 		LOGGER = Logger.new(STDOUT)
-		
+
+    def self.namespace
+      :v10
+    end
 		
 		# Public : Constructor 
 		# 
@@ -53,9 +56,9 @@ module BingAdsApi
 				:developer_token => options[:developer_token],
 				:account_id => options[:account_id],
 				:customer_id => options[:customer_id],
-				:wsdl_url => options[:wdsl] || solve_wsdl_url
+				:wsdl_url => options[:wdsl] || solve_wsdl_url,
+        :namespace => self.class.namespace
 			}
-			
 			# Additionsl ClientProxy settings
 			clientProxySettings[:proxy] = options[:proxy] if options[:proxy]
 			
